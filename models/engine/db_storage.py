@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 import models
 
+
 class DBStorage():
     """DBStorage class"""
 
@@ -29,21 +30,10 @@ class DBStorage():
 
     def all(self, cls=None):
         """ """
-        # from models.city import City
-        # from models.review import Review
-        # from models.state import State
-        # from models.user import User
-        # from models.amenity import Amenity
-        # from models.place import Place
         dic = {}
-        
-
         if cls is not None:
             queries = self.__session.query(cls)
-            # print("Class exists")
-            # print(queries)
             for instance in queries:
-                # print("Inside the loop")
                 key = instance.__class__.__name__ + '.' + instance.id
                 dic[key] = instance
 

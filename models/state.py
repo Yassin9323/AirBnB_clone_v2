@@ -32,4 +32,3 @@ class State(BaseModel, Base):
                 if city.state_id == self.id:
                     result.append(city)
             return result
-#Alpha932003**#
