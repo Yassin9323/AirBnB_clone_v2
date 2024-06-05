@@ -39,11 +39,8 @@ def hello_py(text):
 @app.route('/number/<n>', strict_slashes=False)
 def display_num(n):
     """ Function to display if n is a number """
-    try:
-        int(n)
-        return f"{n} is a number"
-    except ValueError:
-        return
+    int(n)
+    return f"{n} is a number"
 
 
 if __name__ == '__main__':
