@@ -29,5 +29,22 @@ def hello_C(text):
     return "C {}".format(text.replace("_", " "))
 
 
+@app.route('/python/', defaults={'text': "is cool"}, strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def hello_py(text):
+    """ Func print Python with input in Web page """
+    return "Python {}".format(text.replace("_", " "))
+
+
+@app.route('/number/<n>', strict_slashes=False)
+def display_num(n):
+    """ Function to display if n is a number """
+    try:
+        int(n)
+        return f"{n} is a number"
+    except ValueError:
+        return
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
