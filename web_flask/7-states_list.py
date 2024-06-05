@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
     This is a script that starts a Flask web application
     listening on 0.0.0.0, port 5000
@@ -7,10 +8,19 @@
 """
 
 from flask import Flask, render_template
-from models import storage, State
-
+from models import *
+from models import storage
+from operator import attrgetter
 
 app = Flask(__name__)
+
+
+@app.route("/states_list", strict_slashes=False)
+def list_cities():
+    return render_template(
+        "7-states_list.html",
+        states=storage.all(State)
+    )
 
 
 @app.teardown_appcontext
@@ -18,16 +28,5 @@ def teardown(exception):
     storage.close()
 
 
-@app.route("/states_list", strict_slashes=False)
-def display_states():
-    """ Display html page with its DB """
-    
-    return render_template("7-states_list.html",
-                           states=storage.all(State)
-                           )
-
-
-#Alpha932003**#
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
