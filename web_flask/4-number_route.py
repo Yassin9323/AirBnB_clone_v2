@@ -36,10 +36,9 @@ def hello_py(text):
     return "Python {}".format(text.replace("_", " "))
 
 
-@app.route('/number/<n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def display_num(n):
     """ Function to display if n is a number """
-    int(n)
     return f"{n} is a number"
 
 
